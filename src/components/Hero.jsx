@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Calendar, Users, Bed, Plus, Minus, ArrowRight } from 'lucide-react';
 import BookingCard from './BookingCard';
+import MobileExpand from './MobileExpand';
 
 const Hero = () => {
   return (
     <div className="relative">
       {/* Hero Section */}
-      <div className="relative sm:h-[120vh] h-[110svh] overflow-hidden rounded-b-4xl sm:rounded-b-none">
+      <div className="relative sm:h-[120vh] h-[105svh] overflow-hidden rounded-b-4xl sm:rounded-b-none">
         {/* Background Video */}
         <video
           className="absolute inset-0 w-full h-full object-cover"
@@ -70,13 +71,17 @@ const Hero = () => {
 
 
                 {/* Desktop CTA Button */}
-                <div className="block">
+                <div className="hidden sm:block">
                   <button className="bg-white text-center justify-center w-full sm:w-auto text-black px-8 py-2 rounded-full font-medium text-xs hover:bg-gray-100 transition-colors duration-300 flex items-center gap-2">
                     Check Availability
                     <ArrowRight size={20} />
                   </button>
                 </div>
+                <div className="block sm:hidden">
+                  <MobileExpand />
+                </div>
               </div>
+
             </div>
           </div>
         </div>

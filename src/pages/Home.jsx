@@ -4,6 +4,7 @@ import EcoBento from '../components/EcoBento'
 import Packages from '../components/Packages'
 import PoolRoom from '../components/PoolRoom'
 import Testimonials from '../components/Testimonials'
+import EcoCarousel from '../components/EcoCarousel'
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
         <Packages/>
         <PoolRoom/>
         <Testimonials/>
+        <EcoCarousel/>
     </div>
   )
 }

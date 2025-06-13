@@ -2,7 +2,7 @@ import React from 'react'
 
 const PoolRoom = () => {
     return (
-        <div className="relative min-h-screen w-full overflow-hidden">
+        <div className="relative min-h-screen w-full overflow-hidden rounded-t-4xl sm:rounded-t-none">
             {/* Background Image */}
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"

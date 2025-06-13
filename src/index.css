@@ -39,3 +39,34 @@
   background: #000000;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.923) 0%, rgba(255, 255, 255, 0) 60%);
 }
+
+.royal-heading {
+  color: #1F272A;
+  text-align: center;
+  font-family: "royal", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  text-transform: capitalize;
+  letter-spacing: -1.36px;
+  font-size: 68px;
+  line-height: 42px;
+}
+
+/* Desktop styles (min-width: 640px or Tailwind's sm breakpoint) */
+@media (min-width: 640px) {
+  .royal-heading {
+    font-size: 140px;
+    line-height: 88px;
+    letter-spacing: -2.8px;
+  }
+}
+
+/* Hide scrollbar for all browsers */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari and Opera */
+}

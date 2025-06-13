@@ -85,50 +85,50 @@ const Testimonials = () => {
   );
 
   return (
-    <div className="min-h-screen bg-[#0A0707] text-white py-12 lg:py-16 px-4 lg:px-8">
+    <div className="min-h-screen bg-[#0A0707] text-white py-12 lg:py-16 px-4 lg:px-8 rounded-b-4xl sm:rounded-b-none">
       <div className="max-w-7xl mx-auto">
         {/* Title */}
-        <h1 className="text-5xl md:text-[140px] royal text-center mb-16 lg:mb-24 font-light tracking-wide">
+        <h1 className="text-[68px] md:text-[140px] royal text-center mb-16 lg:mb-24 font-light tracking-wide">
           Testimonials
         </h1>
         
-        {/* Mobile: Single Column */}
+        {/* Mobile: Single Column with rounded-4xl */}
         <div className="lg:hidden space-y-8">
           {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="bg-[#FFFFFF05]">
+            <div key={testimonial.id} className="bg-[#FFFFFF14] rounded-4xl overflow-hidden">
               <TestimonialCard testimonial={testimonial} />
             </div>
           ))}
         </div>
 
-        {/* Desktop: Three Column Grid with Exact Ratios */}
-        <div className="hidden lg:grid lg:grid-cols-3 gap-4 xl:gap-4 ">
+        {/* Desktop: Three Column Grid with Exact Ratios (unchanged) */}
+        <div className="hidden lg:grid lg:grid-cols-3 gap-4 xl:gap-4">
           {/* Column 1: 40:60 ratio */}
           <div className="flex flex-col gap-4">
-            <div className="bg-[#FFFFFF05]" style={{ height: '40%' }}>
+            <div className="bg-[#FFFFFF05]">
               <TestimonialCard testimonial={column1[0]} />
             </div>
-            <div className="bg-[#FFFFFF05]" style={{ height: '60%' }}>
+            <div className="bg-[#FFFFFF05]">
               <TestimonialCard testimonial={column1[1]} />
             </div>
           </div>
 
           {/* Column 2: 60:40 ratio */}
           <div className="flex flex-col gap-4">
-            <div className="bg-[#FFFFFF05]" style={{ height: '60%' }}>
+            <div className="bg-[#FFFFFF05]">
               <TestimonialCard testimonial={column2[0]} />
             </div>
-            <div className="bg-[#FFFFFF05]" style={{ height: '40%' }}>
+            <div className="bg-[#FFFFFF05]">
               <TestimonialCard testimonial={column2[1]} />
             </div>
           </div>
 
           {/* Column 3: 45:55 ratio */}
           <div className="flex flex-col gap-4">
-            <div className="bg-[#FFFFFF05]" style={{ height: '45%' }}>
+            <div className="bg-[#FFFFFF05]">
               <TestimonialCard testimonial={column3[0]} />
             </div>
-            <div className="bg-[#FFFFFF05]" style={{ height: '55%' }}>
+            <div className="bg-[#FFFFFF05]">
               <TestimonialCard testimonial={column3[1]} />
             </div>
           </div>

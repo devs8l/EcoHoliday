@@ -2,10 +2,10 @@ import React from 'react'
 
 const EcoBento = () => {
     return (
-        <div className="w-full mx-auto px-4 py-8 mt-[30vh] afacad">
+        <div className="w-full mx-auto px-2 sm:px-4 py-8 sm:mt-[30vh] afacad">
             {/* Header Section */}
-            <div className="text-center mb-[20vh] ">
-                <h1 className="text-4xl md:text-5xl royal lg:text-8xl font-light text-gray-800 mb-6">
+            <div className="text-center sm:mb-[20vh] py-10 sm:py-0">
+                <h1 className="royal-heading mb-6">
                     More About The Eco Holiday Resort
                 </h1>
                 <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed text-xs md:text-base">
@@ -16,11 +16,11 @@ const EcoBento = () => {
             </div>
 
             {/* Bento Grid Section - 2 Rows Layout */}
-            <div className="space-y-4">
+            <div className="space-y-2 sm:space-y-4">
                 {/* First Row: 50% + 25% + 25% */}
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 h-auto lg:h-[500px]">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 sm:gap-4 h-auto lg:h-[500px]">
                     {/* Aerial view - 50% width (2 columns) */}
-                    <div className="relative lg:col-span-2 h-64 md:h-80 lg:h-full overflow-hidden  group">
+                    <div className="relative lg:col-span-2 h-64 md:h-80 lg:h-full rounded-t-4xl sm:rounded-t-none overflow-hidden  group">
                         <img
                             src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
                             alt="Aerial view of our property"
@@ -63,7 +63,7 @@ const EcoBento = () => {
                 </div>
 
                 {/* Second Row: 25% + 25% + 50% */}
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 h-auto lg:h-[500px]">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 sm:gap-4 h-auto lg:h-[500px]">
                     {/* Wooden cottage - 25% width (1 column) */}
                     <div className="relative h-64 md:h-48 lg:h-full overflow-hidden  group">
                         <img
@@ -93,7 +93,7 @@ const EcoBento = () => {
                     </div>
 
                     {/* Night view - 50% width (2 columns) */}
-                    <div className="relative lg:col-span-2 h-64 md:h-80 lg:h-full overflow-hidden  group">
+                    <div className=" relative lg:col-span-2 h-64 md:h-80 lg:h-full rounded-b-4xl sm:rounded-b-none overflow-hidden  group">
                         <img
                             src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
                             alt="Beautiful night view"

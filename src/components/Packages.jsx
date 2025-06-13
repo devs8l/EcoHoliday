@@ -8,6 +8,7 @@ const Packages = () => {
     const packages = {
         party: {
             title: "Party<br/>Package",
+            mobileTitle: "Party Package",
             description: "Enjoy a fun-filled day with our Party Package! Savor a tasty lunch and dinner, while making the most of the swimming pool, rain dance floor, games, and a cozy bonfire. Perfect for a memorable getaway with family or friends in a peaceful village setting!",
             adultPrice: "₹1,000/person",
             childPrice: "₹500/person",
@@ -26,6 +27,7 @@ const Packages = () => {
         },
         nightStay: {
             title: "Night<br/>Stay Package",
+            mobileTitle: "Night Stay Package",
             description: "Experience a relaxing getaway with our Night Stay Package! Choose from a cozy cottage, spacious villa, or pool room, and enjoy a hearty breakfast, access to the swimming pool, rain dance floor, and fun games. Perfect for a serene overnight escape in a peaceful village setting!",
             cottage: "₹4,000/",
             villa: "₹7,000/",
@@ -43,6 +45,7 @@ const Packages = () => {
         },
         campingNight: {
             title: "Camping<br/>Night Package",
+            mobileTitle: "Camping Night Package",
             description: "Dive into an adventurous escape with our Camping Night Package! Enjoy a hearty breakfast and dinner, along with access to the swimming pool, rain dance floor, games, and a warm bonfire. Perfect for a thrilling overnight camping experience in a serene village setting!",
             price: "₹2,000 (+12% Taxes) per person",
             includes: [
@@ -64,7 +67,7 @@ const Packages = () => {
         <div className="min-h-screen px-4 py-4 ">
             {/* Header */}
             <div className="text-center py-12 px-4">
-                <h1 className="text-4xl md:text-[140px] royal font-light text-gray-800 mb-8">
+                <h1 className="royal-heading mb-8">
                     Our Exquisite Packages
                 </h1>
             </div>
@@ -116,18 +119,23 @@ const Packages = () => {
                             {/* Package Details Card */}
                             <div className="sm:w-[47%] h-full">
                                 <div className="bg-white flex flex-col  sm:shadow-xl sm:p-8 p-2 transform  transition-transform duration-300">
-                                    <h2 className="royal  text-3xl md:text-[100px] font-light text-gray-800 mb-8 leading-[0.7em]"
+                                    <h2 className="royal hidden sm:block text-3xl md:text-[100px] font-light text-gray-800 sm:mb-8 mb-4 leading-[0.7em]"
                                         dangerouslySetInnerHTML={{ __html: currentPackage.title }}>
                                     </h2>
+                                    <h1 className='royal block sm:hidden text-[56px] font-normal leading-[32px] mb-4 tracking-[-1.12px] capitalize'>
+                                        {currentPackage.mobileTitle}
+                                    </h1>
 
-                                    <p className="text-gray-600 mb-8 leading-relaxed afacad">
+
+
+                                    <p className="text-gray-600 mb-4 sm:mb-8 text-sm leading-relaxed afacad">
                                         {currentPackage.description}
                                     </p>
 
                                     {activeTab === 'party' && (
-                                        <div className='flex h-[240px] sm:h-[120px] flex-col sm:flex-row justify-between border-b border-gray-100 mb-3 gap-3'>
+                                        <div className='flex h-[180px] sm:h-[120px] flex-col sm:flex-row justify-start sm:justify-between border-b border-gray-100 mb-3 gap-0 sm:gap-3'>
                                             {/* Pricing */}
-                                            <div className="flex flex-col gap-6 ">
+                                            <div className="flex flex-col gap-2 sm:gap-6 ">
                                                 <div className="flex items-center gap-3">
                                                     <Users className="w-5 h-5 text-gray-400" />
                                                     <div className='flex justify-between gap-3'>
@@ -187,8 +195,8 @@ const Packages = () => {
                                     )}
 
                                     {activeTab === 'nightStay' && (
-                                        <div className="space-y-4 h-[120px] mb-8 border-b border-gray-100 pb-4">
-                                            <div className="flex items-center gap-3">
+                                        <div className="space-y-4 h-[155px] sm:h-[120px] mb-3 border-b border-gray-100 ">
+                                            <div className="flex items-center gap-0 sm:gap-3">
                                                 <div className='flex justify-between gap-3'>
                                                     <span className="text-sm text-gray-500 block">Cottage:</span>
                                                     <span className="text-sm font-semibold text-gray-800">
@@ -222,7 +230,7 @@ const Packages = () => {
                                     )}
 
                                     {activeTab === 'campingNight' && (
-                                        <div className="space-y-4 h-[120px] mb-8 border-b border-gray-100 pb-4">
+                                        <div className="space-y-4 sm:h-[120px] h-[155px] mb-3 border-b border-gray-100 ">
                                             <div className="flex items-center gap-3">
                                                 <div className='flex justify-between gap-3'>
                                                     <span className="text-sm text-gray-500 block">Price:</span>
