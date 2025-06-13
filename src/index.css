@@ -61,12 +61,85 @@
   }
 }
 
-/* Hide scrollbar for all browsers */
-.no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
+
+/* Custom pagination styles */
+.swiper-pagination {
+  position: relative !important;
+  bottom: 0 !important;
+  margin-top: 1.5rem !important;
 }
 
-.no-scrollbar::-webkit-scrollbar {
-  display: none;             /* Chrome, Safari and Opera */
+.swiper-pagination-bullet {
+  width: 10px !important;
+  height: 10px !important;
+  background-color: #d1d5db !important;
+  /* gray-300 */
+  opacity: 1 !important;
+  margin: 0 6px !important;
+  transition: all 0.3s ease !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #000 !important;
+  /* black */
+
+}
+
+.swiper-button-next {
+  width: 2.5rem !important;
+  /* w-10 = 40px = 2.5rem */
+  height: 2.5rem !important;
+  /* h-10 = 40px = 2.5rem */
+  border-radius: 9999px !important;
+  /* rounded-full */
+  border: 1px solid #D1D5DB !important;
+  /* border-gray-300 (#D1D5DB) */
+  display: flex !important;
+  /* flex */
+  align-items: center !important;
+  /* items-center */
+  justify-content: center !important;
+  /* justify-center */
+  transition: background-color 0.2s ease-in-out !important;
+  /* transition-colors */
+
+}
+
+.swiper-button-next:hover {
+  background-color: #F9FAFB;
+  /* hover:bg-gray-50 (#F9FAFB) */
+}
+
+.swiper-button-prev {
+  width: 2.5rem !important;
+  /* w-10 = 40px = 2.5rem */
+  height: 2.5rem !important;
+  /* h-10 = 40px = 2.5rem */
+  border-radius: 9999px !important;
+  /* rounded-full */
+  border: 1px solid #D1D5DB !important;
+  /* border-gray-300 (#D1D5DB) */
+  display: flex !important;
+  /* flex */
+  align-items: center !important;
+  /* items-center */
+  justify-content: center !important;
+  /* justify-center */
+  transition: background-color 0.2s ease-in-out !important;
+  /* transition-colors */
+}
+
+.swiper-button-prev:hover {
+  background-color: #F9FAFB;
+  /* hover:bg-gray-50 (#F9FAFB) */
+}
+
+.swiper-button-next::after {
+  display: none !important;
+  /* Hide the default arrow */
+}
+
+.swiper-button-prev::after {
+  display: none !important;
+  /* Hide the default arrow */
 }

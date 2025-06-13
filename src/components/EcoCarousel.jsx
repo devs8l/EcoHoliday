@@ -1,202 +1,35 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Eye, ExternalLink, Play, Pause } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Play, Pause, ExternalLink } from 'lucide-react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const EcoCarousel = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const [playingVideos, setPlayingVideos] = useState({});
+    const [playingStates, setPlayingStates] = useState({});
     const videoRefs = useRef({});
 
-    // Sample video data - replace with your actual video URLs
     const videos = [
-        {
-            id: 1,
-            videoSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
-            thumbnail: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=600&fit=crop',
-            caption: 'Relaxing poolside at our eco resort',
-            views: '12.5K'
-        },
-        {
-            id: 2,
-            videoSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
-            thumbnail: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=400&h=600&fit=crop',
-            caption: 'HOW YOU WAKE UP IN THE MORNING DEPENDS ON HOW YOU FALL ASLEEP UNDER THE SUN THE NIGHT',
-            views: '36.3K'
-        },
-        {
-            id: 3,
-            videoSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-            thumbnail: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&h=600&fit=crop',
-            caption: 'Stunning resort architecture',
-            views: '3,987'
-        },
-        {
-            id: 4,
-            videoSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
-            thumbnail: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=400&h=600&fit=crop',
-            caption: 'Luxury eco accommodations',
-            views: '6,472'
-        },
-        {
-            id: 5,
-            videoSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
-            thumbnail: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=600&fit=crop',
-            caption: 'Resort amenities and facilities',
-            views: '8,231'
-        },
-        {
-            id: 6,
-            videoSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
-            thumbnail: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=400&h=600&fit=crop',
-            caption: 'Adventure activities',
-            views: '15.2K'
-        }
+        { id: 1, src: '/eco-hero.mp4' },
+        { id: 2, src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4' },
+        { id: 3, src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
+        { id: 4, src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4' },
+        { id: 5, src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4' },
+        { id: 6, src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4' }
     ];
 
-    // Calculate slides for desktop (4 videos per slide) and mobile (2 videos per slide)
-    const getDesktopSlides = () => {
-        const slides = [];
-        for (let i = 0; i < videos.length; i += 4) {
-            slides.push(videos.slice(i, i + 4));
-        }
-        return slides;
-    };
-
-    const getMobileSlides = () => {
-        const slides = [];
-        for (let i = 0; i < videos.length; i += 2) {
-            slides.push(videos.slice(i, i + 2));
-        }
-        return slides;
-    };
-
-    const desktopSlides = getDesktopSlides();
-    const mobileSlides = getMobileSlides();
-
-    const toggleVideo = (videoId) => {
-        const video = videoRefs.current[videoId];
+    const togglePlayPause = (id) => {
+        const video = videoRefs.current[id];
         if (!video) return;
 
-        // If the video is currently playing, pause it
-        if (playingVideos[videoId]) {
+        if (playingStates[id]) {
             video.pause();
-            setPlayingVideos(prev => ({ ...prev, [videoId]: false }));
         } else {
-            // Pause all other videos
-            Object.keys(playingVideos).forEach(id => {
-                if (playingVideos[id] && videoRefs.current[id]) {
-                    videoRefs.current[id].pause();
-                    setPlayingVideos(prev => ({ ...prev, [id]: false }));
-                }
-            });
-
-            // Play the selected video
-            video.play()
-                .then(() => {
-                    setPlayingVideos(prev => ({ ...prev, [videoId]: true }));
-                })
-                .catch(error => {
-                    console.error("Error playing video:", error);
-                });
+            video.play().catch(console.error);
         }
+        setPlayingStates(prev => ({ ...prev, [id]: !prev[id] }));
     };
-
-    const nextSlide = () => {
-        const maxSlides = window.innerWidth >= 768 ? desktopSlides.length : mobileSlides.length;
-        setCurrentSlide((prev) => (prev + 1) % maxSlides);
-        
-        // Pause all videos when changing slides
-        Object.keys(playingVideos).forEach(id => {
-            if (playingVideos[id] && videoRefs.current[id]) {
-                videoRefs.current[id].pause();
-            }
-        });
-        setPlayingVideos({});
-    };
-
-    const prevSlide = () => {
-        const maxSlides = window.innerWidth >= 768 ? desktopSlides.length : mobileSlides.length;
-        setCurrentSlide((prev) => (prev - 1 + maxSlides) % maxSlides);
-        
-        // Pause all videos when changing slides
-        Object.keys(playingVideos).forEach(id => {
-            if (playingVideos[id] && videoRefs.current[id]) {
-                videoRefs.current[id].pause();
-            }
-        });
-        setPlayingVideos({});
-    };
-
-    const goToSlide = (index) => {
-        setCurrentSlide(index);
-        
-        // Pause all videos when changing slides
-        Object.keys(playingVideos).forEach(id => {
-            if (playingVideos[id] && videoRefs.current[id]) {
-                videoRefs.current[id].pause();
-            }
-        });
-        setPlayingVideos({});
-    };
-
-    // Handle video ended event
-    const handleVideoEnded = (videoId) => {
-        setPlayingVideos(prev => ({ ...prev, [videoId]: false }));
-    };
-
-    useEffect(() => {
-        // Reset slide when window resizes
-        const handleResize = () => {
-            setCurrentSlide(0);
-            // Pause all videos when resizing
-            Object.keys(playingVideos).forEach(id => {
-                if (playingVideos[id] && videoRefs.current[id]) {
-                    videoRefs.current[id].pause();
-                }
-            });
-            setPlayingVideos({});
-        };
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, [playingVideos]);
-
-    const VideoCard = ({ video, index }) => (
-        <div key={video.id} className="relative group overflow-hidden rounded-lg bg-black">
-            <div className="aspect-[3/4] relative">
-                <video
-                    ref={el => videoRefs.current[video.id] = el}
-                    className="w-full h-full object-cover"
-                    poster={video.thumbnail}
-                    onEnded={() => handleVideoEnded(video.id)}
-                    playsInline
-                    muted
-                    loop={false}
-                >
-                    <source src={video.videoSrc} type="video/mp4" />
-                </video>
-
-                {/* Play/Pause Button Overlay */}
-                <div
-                    className="absolute inset-0 flex items-center justify-center cursor-pointer group-hover:bg-black group-hover:bg-opacity-20 transition-all duration-300"
-                    onClick={() => toggleVideo(video.id)}
-                >
-                    <div className={`w-12 h-12 bg-white bg-opacity-90 rounded-full flex items-center justify-center transition-all duration-300 ${playingVideos[video.id] ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}>
-                        {playingVideos[video.id] ? (
-                            <Pause size={20} className="text-gray-800" />
-                        ) : (
-                            <Play size={20} className="text-gray-800 ml-1" />
-                        )}
-                    </div>
-                </div>
-
-                {/* Views overlay */}
-                <div className="absolute bottom-3 left-3 flex items-center gap-1 text-white text-sm font-medium bg-black bg-opacity-50 px-2 py-1 rounded">
-                    <Eye size={16} />
-                    <span>{video.views}</span>
-                </div>
-            </div>
-        </div>
-    );
 
     return (
         <div className="w-full min-h-screen mx-auto bg-white">
@@ -209,69 +42,86 @@ const EcoCarousel = () => {
 
             {/* Carousel Container */}
             <div className="relative px-4 md:px-18 py-10">
-                {/* Desktop Layout - 4 videos per slide */}
-                <div className="hidden md:block">
-                    <div className="grid grid-cols-4 gap-4 mb-8">
-                        {desktopSlides[currentSlide]?.map((video, index) => (
-                            <VideoCard key={video.id} video={video} index={index} />
-                        ))}
+                <Swiper
+                    modules={[Navigation, Pagination]}
+                    spaceBetween={16}
+                    slidesPerView={2}
+                    slidesPerGroup={2}
+                    navigation={{
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    }}
+                    pagination={{
+                        clickable: true,
+                        el: '.swiper-pagination',
+                        bulletClass: 'swiper-pagination-bullet',
+                        bulletActiveClass: 'swiper-pagination-bullet-active',
+                        renderBullet: (index, className) => {
+                            return `<span class="${className} w-2 h-2 rounded-full transition-colors"></span>`;
+                        },
+                    }}
+                    breakpoints={{
+                        768: {
+                            slidesPerView: 4,
+                            slidesPerGroup: 4,
+                            spaceBetween: 16
+                        }
+                    }}
+                    className="mb-20"
+                >
+                    {videos.map((video) => (
+                        <SwiperSlide key={video.id}>
+                            <div className="relative group overflow-hidden rounded-lg bg-black h-full">
+                                <div className="aspect-[3/5] relative">
+                                    <video
+                                        ref={el => videoRefs.current[video.id] = el}
+                                        src={video.src}
+                                        className="w-full h-full object-cover"
+                                        onClick={() => togglePlayPause(video.id)}
+                                        playsInline
+                                        muted
+                                        loop
+                                    />
+
+                                    <button
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            togglePlayPause(video.id);
+                                        }}
+                                        className="absolute inset-0 m-auto w-12 h-12 bg-white/80 rounded-full flex items-center justify-center hover:bg-white transition-all"
+                                    >
+                                        {playingStates[video.id] ? (
+                                            <Pause className="text-black" size={20} />
+                                        ) : (
+                                            <Play className="text-black pl-1" size={20} />
+                                        )}
+                                    </button>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+
+                {/* Navigation and Pagination */}
+                <div className="flex justify-center items-center mb-6">
+                    <div className="flex items-center justify-center gap-8">
+                        <button className="swiper-button-prev w-10 !relative h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                            <svg className="w-5 h-5 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+
+                        <div className="!relative swiper-pagination mb-10 !w-auto flex gap-2" />
+
+                        <button className="swiper-button-next !relative w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                            <svg className="w-5 h-5 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
-
-                {/* Mobile Layout - 2 videos per slide */}
-                <div className="block md:hidden">
-                    <div className="grid grid-cols-2 gap-3 mb-8">
-                        {mobileSlides[currentSlide]?.map((video, index) => (
-                            <VideoCard key={video.id} video={video} index={index} />
-                        ))}
-                    </div>
-                </div>
-
-                {/* Navigation Arrows */}
-                <div className="flex justify-center items-center gap-4 mb-6">
-                    <button
-                        onClick={prevSlide}
-                        className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors"
-                    >
-                        <ChevronLeft size={20} className="text-gray-600" />
-                    </button>
-                    {/* Dots Indicator */}
-                    <div className="flex justify-center items-center gap-2 ">
-                        {/* Desktop dots */}
-                        <div className="hidden md:flex gap-2">
-                            {desktopSlides.map((_, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => goToSlide(index)}
-                                    className={`w-2 h-2 rounded-full transition-colors ${index === currentSlide ? 'bg-gray-800' : 'bg-gray-300'
-                                        }`}
-                                />
-                            ))}
-                        </div>
-
-                        {/* Mobile dots */}
-                        <div className="flex md:hidden gap-2">
-                            {mobileSlides.map((_, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => goToSlide(index)}
-                                    className={`w-2 h-2 rounded-full transition-colors ${index === currentSlide ? 'bg-gray-800' : 'bg-gray-300'
-                                        }`}
-                                />
-                            ))}
-                        </div>
-                    </div>
-
-                    <button
-                        onClick={nextSlide}
-                        className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors"
-                    >
-                        <ChevronRight size={20} className="text-gray-600" />
-                    </button>
-                </div>
-
                 {/* Follow Button */}
-                <div className="flex justify-center mb-8">
+                <div className="flex justify-end mb-8">
                     <button className="px-6 py-2 border border-gray-800 text-gray-800 rounded-full font-medium hover:bg-gray-800 hover:text-white transition-colors flex items-center gap-2">
                         Follow on Instagram
                         <ExternalLink size={16} />
