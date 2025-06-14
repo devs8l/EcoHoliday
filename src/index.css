@@ -46,7 +46,7 @@
   font-family: "royal", sans-serif;
   font-style: normal;
   font-weight: 400;
-  
+
   letter-spacing: -1.36px;
   font-size: 68px;
   line-height: 42px;
@@ -70,19 +70,18 @@
 }
 
 .swiper-pagination-bullet {
-  width: 5px !important;
-  height: 5px !important;
+  width: 7px !important;
+  height: 7px !important;
   background-color: #d1d5db !important;
   /* gray-300 */
   opacity: 1 !important;
-  margin: 0 6px !important;
+  margin: 0 4px !important;
   transition: all 0.3s ease !important;
 }
 
 .swiper-pagination-bullet-active {
   background-color: #000 !important;
   /* black */
-
 }
 
 .swiper-button-next {
@@ -99,6 +98,7 @@
   align-items: center !important;
   /* items-center */
   justify-content: center !important;
+
   /* justify-center */
   transition: background-color 0.2s ease-in-out !important;
   /* transition-colors */
@@ -148,4 +148,29 @@
 .foot-grad-top {
   background: linear-gradient(180deg, #E5DBD3 54.29%, rgba(235, 211, 199, 0.00) 88.29%);
   backdrop-filter: blur(0px);
+}
+
+.foot-grad-top-about {
+  background: linear-gradient(180deg, #000002 42.83%, rgba(0, 0, 2, 0.00) 100%);
+}
+
+.foot-grad-top-facility {
+  background: linear-gradient(180deg, #D3D7DA 44.29%, rgba(211, 215, 218, 0.00) 88.29%);
+  backdrop-filter: blur(0px);
+}
+
+.hero-grad {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.00) 100%);
+}
+
+.para {
+  color: rgba(255, 255, 255, 0.80);
+  leading-trim: both;
+  text-edge: cap;
+  font-family: 'Afacad', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.36px;
 }

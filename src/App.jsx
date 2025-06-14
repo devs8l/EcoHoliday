@@ -4,6 +4,10 @@ import Home from './pages/Home.jsx'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import Lenis from 'lenis'
+import About from './pages/About.jsx'
+import Facility from './pages/Facility.jsx'
+import Gallery from './pages/Gallery.jsx'
+import Feedback from './pages/Feedback.jsx'
 
 const App = () => {
   useEffect(() => {
@@ -23,6 +27,10 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about-us" element={<About />} />
+        <Route path="/facilities" element={<Facility />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/feedback" element={<Feedback />} />
       </Routes>
       <Footer />
     </div>
