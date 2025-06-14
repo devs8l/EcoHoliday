@@ -15,7 +15,7 @@ const MobileExpand = () => {
   };
 
   return (
-    <div className="absolute bottom-10 left-0 right-0 z-50 px-4 pb-4 ">
+    <div className="absolute bottom-10 left-0 right-0 z-50 px-4 pb-4">
       {/* Main Container */}
       <div className="relative">
         {/* Expandable Card */}
@@ -33,13 +33,15 @@ const MobileExpand = () => {
             <span className="font-medium text-base">Check Availability</span>
             <ChevronDown 
               className={`w-5 h-5 text-black transform transition-transform duration-300 ${
-                isExpanded ? 'rotate-180' : 'rotate-0'
+                isExpanded ? 'rotate-0' : 'rotate-180'
               }`}
             />
           </div>
 
           {/* Content that expands */}
-          <div className={`px-6 pb-4 space-y-4 ${isExpanded ? 'block' : 'hidden'}`}>
+          <div className={`px-6 pb-4 space-y-4 transition-all duration-300 ease-in-out ${
+            isExpanded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-10px] pointer-events-none'
+          }`}>
             {/* Check In */}
             <div className="relative">
               <div className="flex items-center justify-between py-2 border-b border-gray-100">
