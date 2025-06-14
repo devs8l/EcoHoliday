@@ -3,7 +3,7 @@ import { MapPin, Phone, Mail, Facebook, Instagram, MessageCircle, Youtube } from
 
 const Footer = () => {
     return (
-        <div className="min-h-screen relative overflow-hidden afacad rounded-t-4xl sm:rounded-t-none">
+        <div className=" relative overflow-hidden afacad rounded-t-4xl sm:rounded-t-none">
             {/* Background Image */}
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -16,15 +16,15 @@ const Footer = () => {
             </div>
 
             {/* Main Content Container */}
-            <div className="relative z-10 min-h-screen flex flex-col">
+            <div className="relative z-10  flex flex-col">
                 {/* Hero Content */}
-                <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-10 my-10">
+                <div className="h-[75vh] foot-grad-top flex items-start justify-center px-4  ">
                     <div className="text-center  mx-auto">
                         {/* Main Heading */}
-                        <h1 className="!text-[#766C65] w-[90% sm:w-[80%] mx-auto royal-heading">
+                        <h1 className="!text-[#766C65] w-[90%] sm:w-[85%] mt-20 mx-auto royal-heading">
                             Escape the hustle of city life and reconnect
                             with nature at The Eco Holiday Resort,
-                            your luxury retreat in serenity.
+                            <br />your luxury retreat in serenity.
                         </h1>
 
                         {/* CTA Button */}
@@ -37,7 +37,7 @@ const Footer = () => {
                 </div>
 
                 {/* Bottom Section with Contact Info and Map */}
-                <div className="grid grid-cols-2  sm:w-[50%] lg:grid-cols-2 gap-8 p-6 md:p-8 lg:p-12">
+                <div className="grid grid-cols-2  sm:w-[50%] lg:grid-cols-2 gap-8 p-6 md:p-8 ">
                     {/* Get in Touch */}
                     <div className="  rounded-lg p-6 text-white">
                         <h3 className="text-xl font-semibold mb-4 text-white">Get in Touch</h3>

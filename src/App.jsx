@@ -19,13 +19,13 @@ const App = () => {
     });
   })
   return (
-    <>
+    <div className='overflow-hidden'>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
       </Routes>
       <Footer />
-    </>
+    </div>
   )
 }
 

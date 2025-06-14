@@ -11,12 +11,12 @@ const EcoCarousel = () => {
     const videoRefs = useRef({});
 
     const videos = [
-        { id: 1, src: '/eco-hero.mp4' },
-        { id: 2, src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4' },
-        { id: 3, src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
-        { id: 4, src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4' },
-        { id: 5, src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4' },
-        { id: 6, src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4' }
+        { id: 1, src: '/eco-hero.mp4', poster: '/foot-home.png' },
+        { id: 2, src: '/eco-hero.mp4', poster: '/foot-home.png' },
+        { id: 3, src: '/eco-hero.mp4', poster: '/foot-home.png' },
+        { id: 4, src: '/eco-hero.mp4', poster: '/foot-home.png' },
+        { id: 5, src: '/eco-hero.mp4', poster: '/foot-home.png' },
+        { id: 6, src: '/eco-hero.mp4', poster: '/foot-home.png' }
     ];
 
     const togglePlayPause = (id) => {
@@ -76,26 +76,27 @@ const EcoCarousel = () => {
                                     <video
                                         ref={el => videoRefs.current[video.id] = el}
                                         src={video.src}
+                                        poster={video.poster}
                                         className="w-full h-full object-cover"
                                         onClick={() => togglePlayPause(video.id)}
                                         playsInline
                                         muted
                                         loop
+                                        onPlay={() => setPlayingStates(prev => ({ ...prev, [video.id]: true }))}
+                                        onPause={() => setPlayingStates(prev => ({ ...prev, [video.id]: false }))}
                                     />
 
-                                    <button
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            togglePlayPause(video.id);
-                                        }}
-                                        className="absolute inset-0 m-auto w-12 h-12 bg-white/80 rounded-full flex items-center justify-center hover:bg-white transition-all"
-                                    >
-                                        {playingStates[video.id] ? (
-                                            <Pause className="text-black" size={20} />
-                                        ) : (
+                                    {!playingStates[video.id] && (
+                                        <button
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                togglePlayPause(video.id);
+                                            }}
+                                            className="absolute inset-0 m-auto w-12 h-12 bg-white/80 rounded-full flex items-center justify-center hover:bg-white transition-all"
+                                        >
                                             <Play className="text-black pl-1" size={20} />
-                                        )}
-                                    </button>
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </SwiperSlide>
