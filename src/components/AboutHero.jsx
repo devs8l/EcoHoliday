@@ -3,7 +3,7 @@ import SocialBox from './SocialBox'
 
 const AboutHero = () => {
     return (
-        <div className='w-full min-h-screen flex  relative'>
+        <div className='w-full h-[80vh]  sm:min-h-screen flex  relative'>
             <SocialBox/>
             <div className='w-full h-full absolute hero-grad z-40'></div>
             <img src="/about-hero.jpg" className='w-full h-full absolute object-cover' alt="" />

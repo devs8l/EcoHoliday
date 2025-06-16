@@ -9,7 +9,7 @@ export default function Surroundings() {
   ];
 
   return (
-    <div className="w-[90%] mx-auto sm:px-4 py-8 lg:py-12">
+    <div className="w-full sm:w-[90%] bg-white mx-auto sm:px-4 py-8 px-4 rounded-t-4xl sm:rounded-t-none lg:py-12 mt-[-70px] sm:mt-0 relative z-100">
       <h1 className="royal-heading !text-left mb-8 sm:mb-20">
         Surroundings
       </h1>
