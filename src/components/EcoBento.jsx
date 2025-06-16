@@ -22,9 +22,9 @@ const EcoBento = () => {
                     {/* Aerial view - 50% width (2 columns) */}
                     <div className="relative lg:col-span-2 h-64 md:h-80 lg:h-full rounded-t-4xl sm:rounded-t-none overflow-hidden  group">
                         <img
-                            src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
+                            src="/about-hero.jpg"
                             alt="Aerial view of our property"
-                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-101"
                         />
                         <div className="absolute bottom-4 left-4">
                             <div className="bg-black/30 backdrop-blur-sm px-3 py-1 ">
@@ -36,9 +36,9 @@ const EcoBento = () => {
                     {/* Pool room - 25% width (1 column) */}
                     <div className="relative h-64 md:h-48 lg:h-full overflow-hidden  group">
                         <img
-                            src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80"
+                            src="/pool-room.jpg"
                             alt="Our USP: Personal Pool Rooms"
-                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-101"
                         />
                         <div className="absolute bottom-4 left-4">
                             <div className="bg-black/30 backdrop-blur-sm px-3 py-1 ">
@@ -50,9 +50,9 @@ const EcoBento = () => {
                     {/* Swimming pool - 25% width (1 column) */}
                     <div className="relative h-64 md:h-48 lg:h-full overflow-hidden  group">
                         <img
-                            src="https://images.unsplash.com/photo-1544986581-efac024faf62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
+                            src="/eco-pool.png"
                             alt="Lavish Swimming pool"
-                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            className="w-full h-full object-cover  transition-transform duration-300 group-hover:scale-101"
                         />
                         <div className="absolute bottom-4 left-4">
                             <div className="bg-black/30 backdrop-blur-sm px-3 py-1 ">
@@ -67,9 +67,9 @@ const EcoBento = () => {
                     {/* Wooden cottage - 25% width (1 column) */}
                     <div className="relative h-64 md:h-48 lg:h-full overflow-hidden  group">
                         <img
-                            src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
+                            src="/cottage-bed.jpg"
                             alt="Comforting wooden cottage"
-                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-101"
                         />
                         <div className="absolute bottom-4 left-4">
                             <div className="bg-black/30 backdrop-blur-sm px-3 py-1 ">
@@ -81,9 +81,9 @@ const EcoBento = () => {
                     {/* Dining hall - 25% width (1 column) */}
                     <div className="relative h-64 md:h-48 lg:h-full overflow-hidden  group">
                         <img
-                            src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
+                            src="/eco-dining.jpg"
                             alt="Exquisite dining hall"
-                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-101"
                         />
                         <div className="absolute bottom-4 left-4">
                             <div className="bg-black/30 backdrop-blur-sm px-3 py-1 ">
@@ -95,9 +95,9 @@ const EcoBento = () => {
                     {/* Night view - 50% width (2 columns) */}
                     <div className=" relative lg:col-span-2 h-64 md:h-80 lg:h-full rounded-b-4xl sm:rounded-b-none overflow-hidden  group">
                         <img
-                            src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
+                            src="/eco-view.jpg"
                             alt="Beautiful night view"
-                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-101"
                         />
                         <div className="absolute bottom-4 left-4">
                             <div className="bg-black/30 backdrop-blur-sm px-3 py-1 ">

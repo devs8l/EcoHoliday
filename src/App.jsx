@@ -8,6 +8,9 @@ import About from './pages/About.jsx'
 import Facility from './pages/Facility.jsx'
 import Gallery from './pages/Gallery.jsx'
 import Feedback from './pages/Feedback.jsx'
+import Contact from './pages/Contact.jsx'
+import DayOutPartyPage from './pages/DayOutPartyPage.jsx'
+import RoomBookingPage from './pages/RoomBookingPage.jsx'
 
 const App = () => {
   useEffect(() => {
@@ -31,6 +34,9 @@ const App = () => {
         <Route path="/facilities" element={<Facility />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/feedback" element={<Feedback />} />
+        <Route path="/contact-us" element={<Contact />} />
+        <Route path="/day-out-booking" element={<DayOutPartyPage />} />
+        <Route path="/room-booking" element={<RoomBookingPage />} />
       </Routes>
       <Footer />
     </div>

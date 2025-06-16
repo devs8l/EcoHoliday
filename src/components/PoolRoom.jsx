@@ -29,8 +29,8 @@ const PoolRoom = () => {
                                 leisurely
                                 <span className="absolute bottom-[10px] left-0 w-full border-b-[0.05em] border-white"></span>
                             </span>
-                            <br />
-                            <span className="italic relative">
+                            <br className='sm:block hidden'/>
+                            <span className="italic relative ml-2 sm:ml-0 ">
                                 experience
                                 <span className="absolute bottom-[10px] left-0 w-full border-b-[0.05em] border-white"></span>
                             </span>

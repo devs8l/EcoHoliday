@@ -7,7 +7,7 @@ const Testimonials = () => {
       id: 1,
       name: "Kushali",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit!",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face",
+      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=60&h=60&fit=crop&crop=face",
       column: 1,
       position: "top",
       heightRatio: "40" // 40% of column height

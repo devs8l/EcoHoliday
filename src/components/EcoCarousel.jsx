@@ -71,7 +71,7 @@ const EcoCarousel = () => {
                 >
                     {videos.map((video) => (
                         <SwiperSlide key={video.id}>
-                            <div className="relative group overflow-hidden rounded-lg bg-black h-full">
+                            <div className="relative group overflow-hidden   h-full">
                                 <div className="aspect-[3/5] relative">
                                     <video
                                         ref={el => videoRefs.current[video.id] = el}

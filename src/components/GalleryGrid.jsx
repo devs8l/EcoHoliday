@@ -45,7 +45,7 @@ const GalleryGrid = () => {
     <div className="p-2  mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         {galleryData.map((item) => (
-          <div key={item.id} className="relative group overflow-hidden  hover:shadow-xl transition-shadow duration-300">
+          <div key={item.id} className={`relative ${item.id === 1 ? 'rounded-t-4xl sm:rounded-t-none' : ''} ${item.id === 6 ? 'rounded-b-4xl sm:rounded-b-none' : ''} group overflow-hidden  hover:shadow-xl transition-shadow duration-300`}>
             <img
               src={item.image}
               alt={item.alt}

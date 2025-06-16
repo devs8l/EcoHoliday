@@ -19,10 +19,10 @@ const routeConfig = {
         heading: 'Escape the hustle of city life and reconnect with nature at The Eco Holiday Resort, your luxury retreat in serenity.'
     },
     '/services': {
-        backgroundImage: '/foot-services.png',
-        gradientClass: 'foot-grad-top-services',
-        bgColor: '#766C65',
-        textColor: '#FFFFFF',
+        backgroundImage: '/gallery-foot.jpg',
+        gradientClass: 'foot-grad-top-about',
+        bgColor: '#ffffff',
+        textColor: '#000',
         heading: 'Escape the hustle of city life and reconnect with nature at The Eco Holiday Resort, your luxury retreat in serenity.'
     },
     '/facilities': {
@@ -47,10 +47,10 @@ const routeConfig = {
         heading: 'Escape the hustle of city life and reconnect with nature at The Eco Holiday Resort, your luxury retreat in serenity.'
     },
     '/contact-us': {
-        backgroundImage: '/foot-contact.png',
-        gradientClass: 'foot-grad-top-contact',
-        bgColor: '#766C65',
-        textColor: '#FFFFFF',
+        backgroundImage: '/contact-foot.jpg',
+        gradientClass: 'foot-grad-top-about',
+        bgColor: '#ffffff',
+        textColor: '#000',
         heading: 'Escape the hustle of city life and reconnect with nature at The Eco Holiday Resort, your luxury retreat in serenity.'
     }
 };
@@ -97,13 +97,13 @@ const Footer = () => {
                 </div>
 
                 {/* Rest of your footer content remains exactly the same */}
-                <div className="grid grid-cols-2 sm:w-[50%] lg:grid-cols-2 gap-8 p-6 md:p-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 sm:w-[50%] lg:grid-cols-2 sm:gap-8  md:p-8">
                     {/* Get in Touch */}
                     <div className="rounded-lg p-6 text-white">
                         <h3 className="text-xl font-semibold mb-4 text-white">Get in Touch</h3>
-                        <div className="space-y-3 text-sm">
+                        <div className="space-y-3 text-lg">
                             <div className="flex items-start gap-2">
-                                <MapPin className="w-4 h-4 text-[#FFFFFF99] mt-1" />
+                                <MapPin className="hidden sm:block w-4 h-4 text-[#FFFFFF99] mt-1" />
                                 <span className='text-[#FFFFFF99]'>Eco Holiday Resorts<br />
                                     In front of Esco Petrol Pump<br />
                                     Near Bijasan Mate Temple<br />
@@ -117,7 +117,7 @@ const Footer = () => {
                     {/* Important Links */}
                     <div className="rounded-lg p-6 text-white">
                         <h3 className="text-xl font-semibold mb-4 text-white">Important Links</h3>
-                        <div className="space-y-2 text-sm">
+                        <div className="space-y-2 text-lg">
                             <div><a href="#" className="hover:text-gray-300 text-[#FFFFFF99] transition-colors">About Us</a></div>
                             <div><a href="#" className="hover:text-gray-300 text-[#FFFFFF99] transition-colors">Dayout Party Booking</a></div>
                             <div><a href="#" className="hover:text-gray-300 text-[#FFFFFF99] transition-colors">Stay Room Booking</a></div>
@@ -129,7 +129,7 @@ const Footer = () => {
                     </div>
 
                     {/* Reach Us - Map */}
-                    <div className="rounded-lg p-6 text-white">
+                    <div className="rounded-lg p-6 text-white hidden sm:block">
                         <h3 className="text-xl font-semibold mb-4 text-white">Reach Us</h3>
                         <div className="h-50 overflow-hidden">
                             <iframe
@@ -145,13 +145,19 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
+                <div className="gap-6 absolute sm:hidden z-100 bottom-50 right-10 flex flex-col">
+                    <Facebook className="w-6 h-6 text-white hover:text-gray-300 cursor-pointer transition-colors" />
+                    <Instagram className="w-6 h-6 text-white hover:text-gray-300 cursor-pointer transition-colors" />
+                    <MessageCircle className="w-6 h-6 text-white hover:text-gray-300 cursor-pointer transition-colors" />
+                    <Youtube className="w-6 h-6 text-white hover:text-gray-300 cursor-pointer transition-colors" />
+                </div>
 
                 {/* Footer */}
-                <div className="w-[60%] absolute bottom-0 right-0 px-6 md:px-8 lg:px-12 py-4 mt-8 mb-5">
-                    <div className="flex flex-col md:flex-row justify-between items-start gap-4">
-                        <div className="text-white text-sm flex flex-col items-center gap-5">
+                <div className="sm:w-[60%] sm:absolute bottom-0 right-0 px-6 md:px-8 lg:px-12 py-4 mt-8 mb-5">
+                    <div className="flex flex-col-reverse md:flex-row justify-between items-start gap-4">
+                        <div className="sm:text-white text-[#FFFFFF80] text-sm flex flex-col items-center gap-5">
                             <h3>© 2025 Eco Holiday Resorts. All Rights Reserved.</h3>
-                            <div className="flex gap-4">
+                            <div className="gap-4 hidden sm:flex">
                                 <Facebook className="w-5 h-5 text-white hover:text-gray-300 cursor-pointer transition-colors" />
                                 <Instagram className="w-5 h-5 text-white hover:text-gray-300 cursor-pointer transition-colors" />
                                 <MessageCircle className="w-5 h-5 text-white hover:text-gray-300 cursor-pointer transition-colors" />

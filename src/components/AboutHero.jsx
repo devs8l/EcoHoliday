@@ -1,8 +1,10 @@
 import React from 'react'
+import SocialBox from './SocialBox'
 
 const AboutHero = () => {
     return (
         <div className='w-full min-h-screen flex  relative'>
+            <SocialBox/>
             <div className='w-full h-full absolute hero-grad z-40'></div>
             <img src="/about-hero.jpg" className='w-full h-full absolute object-cover' alt="" />
             <div className='relative z-50 sm:px-15  px-5 py-25 sm:py-45 flex flex-col sm:gap-20 gap-10 items-start  sm:w-[25%]'>

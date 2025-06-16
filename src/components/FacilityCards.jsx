@@ -112,7 +112,7 @@ const FacilityCards = () => {
     return (
         <div className="min-h-screen p-2 md:p-8 md:px-6">
             <div className="w-full md:w-[90%] mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 h-auto md:h-[120vh]">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-8 h-auto md:h-[120vh]">
                     {accommodations.map((accommodation, index) => (
                         <div 
                             key={accommodation.id} 
