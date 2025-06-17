@@ -24,7 +24,19 @@ const Navbar = () => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const location = useLocation();
-  const isFacilitiesPage = location.pathname === '/facilities';
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+    
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
+  const isFacilitiesPage = location.pathname === '/facilities' && isMobile;
   const servicesRef = useRef(null);
 
   // Close services dropdown when clicking outside
@@ -58,7 +70,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`z-100 w-full afacad absolute top-0 left-0 ${isFacilitiesPage ? 'bg-white/10' : ''}`}>
+    <nav className={`z-100 w-full afacad absolute top-0 left-0 `}>
       <div className="sm:px-15 sm:py-6 p-3">
         <div className="flex items-center h-12">
           {/* Desktop Navigation */}

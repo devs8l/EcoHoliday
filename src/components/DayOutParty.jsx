@@ -279,7 +279,7 @@ Proceeding to check availability...`);
                                         {/* Check Availability Button */}
                                         <button
                                             onClick={handleCheckAvailability}
-                                            className="sm:w-[30%] w-full bg-black text-white py-3 px-6 rounded-lg font-medium text-sm hover:bg-gray-800 transition-colors duration-200 flex items-center justify-center gap-2"
+                                            className="sm:w-[30%] w-full bg-black text-white py-3 px-6 rounded-full font-medium text-sm hover:bg-gray-800 transition-colors duration-200 flex items-center justify-center gap-2"
                                         >
                                             Check Availability
                                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

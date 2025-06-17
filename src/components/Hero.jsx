@@ -17,7 +17,7 @@ const Hero = () => {
           loop
           playsInline
         >
-          <source src="/eco-hero.mp4" type="video/mp4" />
+          <source src="/eco-new.mp4" type="video/mp4" />
           {/* Fallback background image */}
           <div className="absolute z-0 inset-0 bg-gradient-to-r from-green-900 to-blue-900"></div>
         </video>

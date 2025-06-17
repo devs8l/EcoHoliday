@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+import { Popover } from '@mui/material';
+import dayjs from 'dayjs';
 
 const BookingCard = () => {
     const [adults, setAdults] = useState(2);
@@ -7,84 +12,11 @@ const BookingCard = () => {
     const [extraBeds, setExtraBeds] = useState(1);
     const [checkInDate, setCheckInDate] = useState(null);
     const [checkOutDate, setCheckOutDate] = useState(null);
-    const [showCheckInCalendar, setShowCheckInCalendar] = useState(false);
-    const [showCheckOutCalendar, setShowCheckOutCalendar] = useState(false);
-    const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
-    const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+    const [checkInAnchorEl, setCheckInAnchorEl] = useState(null);
+    const [checkOutAnchorEl, setCheckOutAnchorEl] = useState(null);
 
     const increment = (setter, value) => setter(value + 1);
     const decrement = (setter, value) => setter(Math.max(0, value - 1));
-
-    const months = [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-
-    const getDaysInMonth = (month, year) => {
-        return new Date(year, month + 1, 0).getDate();
-    };
-
-    const getFirstDayOfMonth = (month, year) => {
-        return new Date(year, month, 1).getDay();
-    };
-
-    const renderCalendar = (month, year, isCheckOut = false) => {
-        const daysInMonth = getDaysInMonth(month, year);
-        const firstDay = getFirstDayOfMonth(month, year);
-        const days = [];
-
-        // Add empty cells for days before the first day of the month
-        for (let i = 0; i < firstDay; i++) {
-            days.push(<div key={`empty-${i}`} className="w-8 h-8"></div>);
-        }
-
-        // Add cells for each day of the month
-        for (let day = 1; day <= daysInMonth; day++) {
-            const date = new Date(year, month, day);
-            const isSelected = isCheckOut
-                ? checkOutDate && date.toDateString() === checkOutDate.toDateString()
-                : checkInDate && date.toDateString() === checkInDate.toDateString();
-
-            days.push(
-                <div
-                    key={`day-${day}`}
-                    className={`w-8 h-8 flex items-center justify-center rounded-full cursor-pointer text-sm
-            ${isSelected ? 'bg-teal-600 text-white' : 'hover:bg-gray-100'}`}
-                    onClick={() => {
-                        if (isCheckOut) {
-                            setCheckOutDate(date);
-                            setShowCheckOutCalendar(false);
-                        } else {
-                            setCheckInDate(date);
-                            setShowCheckInCalendar(false);
-                        }
-                    }}
-                >
-                    {day}
-                </div>
-            );
-        }
-
-        return days;
-    };
-
-    const prevMonth = () => {
-        if (currentMonth === 0) {
-            setCurrentMonth(11);
-            setCurrentYear(currentYear - 1);
-        } else {
-            setCurrentMonth(currentMonth - 1);
-        }
-    };
-
-    const nextMonth = () => {
-        if (currentMonth === 11) {
-            setCurrentMonth(0);
-            setCurrentYear(currentYear + 1);
-        } else {
-            setCurrentMonth(currentMonth + 1);
-        }
-    };
 
     const formatDate = (date) => {
         if (!date) return '';
@@ -94,14 +26,39 @@ const BookingCard = () => {
         return `${day}/${month}/${year}`;
     };
 
+    const handleCheckInClick = (event) => {
+        setCheckInAnchorEl(event.currentTarget);
+        setCheckOutAnchorEl(null);
+    };
+
+    const handleCheckOutClick = (event) => {
+        setCheckOutAnchorEl(event.currentTarget);
+        setCheckInAnchorEl(null);
+    };
+
+    const handleClose = () => {
+        setCheckInAnchorEl(null);
+        setCheckOutAnchorEl(null);
+    };
+
+    const handleCheckInDateChange = (newDate) => {
+        setCheckInDate(newDate ? new Date(newDate) : null);
+        handleClose();
+    };
+
+    const handleCheckOutDateChange = (newDate) => {
+        setCheckOutDate(newDate ? new Date(newDate) : null);
+        handleClose();
+    };
+
     return (
-        <div className="bg-white p-3  gap-10 flex items-center  shadow-lg max-w-5xl mx-auto">
+        <div className="bg-white p-3 gap-10 flex items-center shadow-lg max-w-5xl mx-auto">
             <div className='w-[80%]'>
                 {/* First Row */}
                 <div className="grid grid-cols-3 gap-4 mb-4">
                     {/* Check In */}
-                    <div className="border border-gray-300 rounded-lg p-4 relative">
-                        <div className="flex items-center gap-2 text-gray-600 text-sm mb-2">
+                    <div className="border flex justify-between  items-center border-gray-300 rounded-lg p-4 relative">
+                        <div className="flex items-center gap-2 text-gray-600 text-sm justify-center">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                                 <line x1="16" y1="2" x2="16" y2="6" />
@@ -111,35 +68,37 @@ const BookingCard = () => {
                             <span>Check In</span>
                         </div>
                         <div
-                            className="cursor-pointer text-gray-800 font-medium"
-                            onClick={() => {
-                                setShowCheckInCalendar(!showCheckInCalendar);
-                                setShowCheckOutCalendar(false);
-                            }}
+                            className="cursor-pointer text-gray-800 font-medium text-sm"
+                            onClick={handleCheckInClick}
                         >
                             {checkInDate ? formatDate(checkInDate) : 'Select Date'}
                         </div>
 
-                        {showCheckInCalendar && (
-                            <div className="absolute z-20 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg p-4 w-64 left-0">
-                                <div className="flex justify-between items-center mb-2">
-                                    <button onClick={prevMonth} className="p-1 rounded hover:bg-gray-100">&lt;</button>
-                                    <div className="font-medium">{months[currentMonth]} {currentYear}</div>
-                                    <button onClick={nextMonth} className="p-1 rounded hover:bg-gray-100">&gt;</button>
-                                </div>
-                                <div className="grid grid-cols-7 gap-1 text-center">
-                                    {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map(day => (
-                                        <div key={day} className="text-xs text-gray-500 py-1">{day}</div>
-                                    ))}
-                                    {renderCalendar(currentMonth, currentYear, false)}
-                                </div>
-                            </div>
-                        )}
+                        <Popover
+                            open={Boolean(checkInAnchorEl)}
+                            anchorEl={checkInAnchorEl}
+                            onClose={handleClose}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                            }}
+                        >
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <DateCalendar
+                                    value={checkInDate ? dayjs(checkInDate) : null}
+                                    onChange={handleCheckInDateChange}
+                                />
+                            </LocalizationProvider>
+                        </Popover>
                     </div>
 
                     {/* Adults */}
-                    <div className="border border-gray-300 rounded-lg p-4">
-                        <div className="flex items-center gap-2 text-gray-600 text-sm mb-2">
+                    <div className="border flex justify-between  items-center border-gray-300 rounded-lg p-4">
+                        <div className="flex items-center gap-2 text-gray-600 text-sm ">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                                 <circle cx="12" cy="7" r="4" />
@@ -164,8 +123,8 @@ const BookingCard = () => {
                     </div>
 
                     {/* No. of Rooms */}
-                    <div className="border border-gray-300 rounded-lg p-4">
-                        <div className="flex items-center gap-2 text-gray-600 text-sm mb-2">
+                    <div className="border border-gray-300 rounded-lg p-4 flex justify-between  items-center">
+                        <div className="flex items-center gap-2 text-gray-600 text-sm ">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                                 <polyline points="9,22 9,12 15,12 15,22" />
@@ -193,8 +152,8 @@ const BookingCard = () => {
                 {/* Second Row */}
                 <div className="grid grid-cols-3 gap-4">
                     {/* Check Out */}
-                    <div className="border border-gray-300 rounded-lg p-4 relative">
-                        <div className="flex items-center gap-2 text-gray-600 text-sm mb-2">
+                    <div className="border border-gray-300 rounded-lg p-4 relative flex justify-between  items-center">
+                        <div className="flex items-center gap-2 text-gray-600 text-sm ">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                                 <line x1="16" y1="2" x2="16" y2="6" />
@@ -204,35 +163,37 @@ const BookingCard = () => {
                             <span>Check Out</span>
                         </div>
                         <div
-                            className="cursor-pointer text-gray-800 font-medium"
-                            onClick={() => {
-                                setShowCheckOutCalendar(!showCheckOutCalendar);
-                                setShowCheckInCalendar(false);
-                            }}
+                            className="cursor-pointer text-gray-800 font-medium text-sm"
+                            onClick={handleCheckOutClick}
                         >
                             {checkOutDate ? formatDate(checkOutDate) : 'Select Date'}
                         </div>
 
-                        {showCheckOutCalendar && (
-                            <div className="absolute z-20 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg p-4 w-64 left-0">
-                                <div className="flex justify-between items-center mb-2">
-                                    <button onClick={prevMonth} className="p-1 rounded hover:bg-gray-100">&lt;</button>
-                                    <div className="font-medium">{months[currentMonth]} {currentYear}</div>
-                                    <button onClick={nextMonth} className="p-1 rounded hover:bg-gray-100">&gt;</button>
-                                </div>
-                                <div className="grid grid-cols-7 gap-1 text-center">
-                                    {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map(day => (
-                                        <div key={day} className="text-xs text-gray-500 py-1">{day}</div>
-                                    ))}
-                                    {renderCalendar(currentMonth, currentYear, true)}
-                                </div>
-                            </div>
-                        )}
+                        <Popover
+                            open={Boolean(checkOutAnchorEl)}
+                            anchorEl={checkOutAnchorEl}
+                            onClose={handleClose}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                            }}
+                        >
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <DateCalendar
+                                    value={checkOutDate ? dayjs(checkOutDate) : null}
+                                    onChange={handleCheckOutDateChange}
+                                />
+                            </LocalizationProvider>
+                        </Popover>
                     </div>
 
                     {/* Kids */}
-                    <div className="border border-gray-300 rounded-lg p-4">
-                        <div className="flex items-center gap-2 text-gray-600 text-sm mb-2">
+                    <div className="border border-gray-300 rounded-lg p-4 flex justify-between  items-center">
+                        <div className="flex items-center gap-2 text-gray-600 text-sm ">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <circle cx="12" cy="8" r="3" />
                                 <path d="M12 14v7" />
@@ -260,8 +221,8 @@ const BookingCard = () => {
                     </div>
 
                     {/* Extra Beds */}
-                    <div className="border border-gray-300 rounded-lg p-4">
-                        <div className="flex items-center gap-2 text-gray-600 text-sm mb-2">
+                    <div className="border border-gray-300 rounded-lg p-4 flex justify-between  items-center">
+                        <div className="flex items-center gap-2 text-gray-600 text-sm ">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z" />
                                 <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
@@ -290,8 +251,8 @@ const BookingCard = () => {
             </div>
 
             {/* Check Availability Button */}
-            <div className="flex justify-end mt-6">
-                <button className="bg-black text-white px-5 py-2  text-xs rounded-full font-medium hover:bg-gray-800 flex items-center gap-2">
+            <div className="flex justify-end ">
+                <button className="bg-black text-white px-5 py-2 text-xs rounded-full font-medium hover:bg-gray-800 flex items-center gap-2">
                     Check Availability
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M5 12h14" />

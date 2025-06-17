@@ -22,7 +22,7 @@ const Packages = () => {
                 { icon: "/games.svg", label: "Games" },
                 { icon: "/bonfire.svg", label: "Bonfire" }
             ],
-            bgImage: "url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80')",
+            bgImage: "url('/eco-pool.png')",
             imgTop: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
         },
         nightStay: {
@@ -39,7 +39,7 @@ const Packages = () => {
                 { icon: "/rain.svg", label: "Rain Dance Floor" },
                 { icon: "/games.svg", label: "Games" },
             ],
-            bgImage: "url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80')",
+            bgImage: "url('/eco-bed.jpg')",
             isPopular: true,
             imgTop: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
         },
@@ -55,7 +55,7 @@ const Packages = () => {
                 { icon: "/games.svg", label: "Games" },
                 { icon: "/bonfire.svg", label: "Bonfire" }
             ],
-            bgImage: "url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80')",
+            bgImage: "url('/camp-1.png')",
             imgTop: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
         }
     };
@@ -108,7 +108,10 @@ const Packages = () => {
                 </div>
                 {/* Main Content */}
                 <div
-                    className=" bg-cover bg-center bg-no-repeat relative"
+                    className={` bg-cover bg-center bg-no-repeat relative ${activeTab === 'campingNight'
+                            ? 'object-[0%_25%]'
+                            : ''
+                            }` }
                     style={{ backgroundImage: currentPackage.bgImage }}
                 >
                     {/* Overlay */}
