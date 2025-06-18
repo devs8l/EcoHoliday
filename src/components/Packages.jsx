@@ -122,10 +122,10 @@ const Packages = () => {
                             {/* Package Details Card */}
                             <div className="sm:w-[47%] h-full">
                                 <div className="bg-white flex flex-col  sm:shadow-xl sm:p-8 p-2 transform  transition-transform duration-300">
-                                    <h2 className="royal hidden sm:block text-3xl md:text-[100px] font-light text-gray-800 sm:mb-8 mb-4 leading-[0.7em]"
+                                    <h2 className="package-heading sm:mb-8 mb-4 sm:block hidden"
                                         dangerouslySetInnerHTML={{ __html: currentPackage.title }}>
                                     </h2>
-                                    <h1 className='royal block sm:hidden text-[56px] font-normal leading-[32px] mb-4 tracking-[-1.12px] capitalize'>
+                                    <h1 className='package-heading sm:hidden block '>
                                         {currentPackage.mobileTitle}
                                     </h1>
 

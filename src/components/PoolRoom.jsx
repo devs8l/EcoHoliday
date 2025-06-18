@@ -19,20 +19,20 @@ const PoolRoom = () => {
                 <div className="relative z-10 flex flex-col justify-start py-10 items-end min-h-screen px-4 sm:px-8 lg:px-16 xl:px-24">
                     <div className="flex flex-col gap-16 items-start"> {/* Increased gap to 16 */}
                         {/* Main Heading */}
-                        <h1 className="text-white royal text-[60px] mt-10 md:text-[80px] lg:text-[100px] xl:text-[140px] font-normal leading-[0.7] tracking-[-0.02em]">
+                        <h1 className="!text-white  mt-10 royal-heading">
                             Our Personal Pool Rooms
                             <br />
                             offer the perfect setting to
                             <br />
                             unwind and enjoy a{' '}
-                            <span className="italic relative">
-                                leisurely
-                                <span className="absolute bottom-[10px] left-0 w-full border-b-[0.05em] border-white"></span>
-                            </span>
                             <br className='sm:block hidden'/>
-                            <span className="italic relative ml-2 sm:ml-0 ">
+                            <span className=" relative">
+                                leisurely
+                                <span className="absolute bottom-[0px] left-0 w-full border-b-[0.05em] border-white"></span>
+                            </span>
+                            <span className=" relative ml-2 sm:ml-5 ">
                                 experience
-                                <span className="absolute bottom-[10px] left-0 w-full border-b-[0.05em] border-white"></span>
+                                <span className="absolute bottom-[0px] right-0 w-[110%] border-b-[0.05em] border-white"></span>
                             </span>
                         </h1>
 

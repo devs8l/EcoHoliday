@@ -5,12 +5,14 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { Popover } from '@mui/material';
 import dayjs from 'dayjs';
+import { usePopup } from '../contexts/PopupContext';
 
 const DayOutParty = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedDate, setSelectedDate] = useState(null);
     const [adultCount, setAdultCount] = useState(2);
     const [kidCount, setKidCount] = useState(0);
+    const { openPopup } = usePopup(); 
 
     const packageData = {
         title: "Day Out Party",
@@ -63,20 +65,17 @@ const DayOutParty = () => {
 
     const handleCheckAvailability = () => {
         if (!selectedDate) {
-            alert('Please select a visit date');
+            alert('Please select check-in date');
             return;
         }
 
-        const formattedDate = selectedDate.format('DD MMM YYYY');
-        const totalCost = (adultCount * 1000) + (kidCount * 500);
-
-        alert(`Booking Details:
-Date: ${formattedDate}
-Adults: ${adultCount} (₹${adultCount * 1000})
-Kids: ${kidCount} (₹${kidCount * 500})
-Total Cost: ₹${totalCost}
-
-Proceeding to check availability...`);
+        // Replace the alert with popup opening
+        openPopup({
+            adults: adultCount,
+            kids: kidCount,
+            packageName: 'Day Out Booking',
+            checkInDate: selectedDate.format('DD MMM YYYY'),
+        });
     };
 
     return (

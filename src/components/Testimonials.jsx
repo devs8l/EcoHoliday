@@ -88,7 +88,7 @@ const Testimonials = () => {
     <div className="min-h-screen bg-[#0A0707] sm:mt-0 mt-[-30px] text-white py-12 lg:py-16 px-4 lg:px-8 rounded-b-4xl sm:rounded-b-none">
       <div className="max-w-7xl mx-auto">
         {/* Title */}
-        <h1 className="text-[68px] md:text-[140px] royal text-center mb-16 lg:mb-24 sm:mt-0 mt-80 font-light tracking-wide">
+        <h1 className="  text-center mb-16 lg:mb-24 sm:mt-0 mt-80 !text-white royal-heading">
           Testimonials
         </h1>
         

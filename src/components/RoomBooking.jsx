@@ -5,6 +5,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { Popover } from '@mui/material';
 import dayjs from 'dayjs';
+import { usePopup } from '../contexts/PopupContext';
 
 const RoomBooking = () => {
     const [checkInAnchorEl, setCheckInAnchorEl] = useState(null);
@@ -15,6 +16,7 @@ const RoomBooking = () => {
     const [kidCount, setKidCount] = useState(0);
     const [roomCount, setRoomCount] = useState(1);
     const [extraBeds, setExtraBeds] = useState(1);
+    const { openPopup } = usePopup(); 
 
     const packageData = {
         title: "Room Booking",
@@ -92,15 +94,16 @@ const RoomBooking = () => {
             return;
         }
 
-        alert(`Booking Details:
-Check-in: ${checkInDate.format('DD MMM YYYY')}
-Check-out: ${checkOutDate.format('DD MMM YYYY')}
-Adults: ${adultCount}
-Kids: ${kidCount}
-Rooms: ${roomCount}
-Extra Beds: ${extraBeds}
-
-Proceeding to check availability...`);
+        // Replace the alert with popup opening
+        openPopup({
+            adults: adultCount,
+            kids: kidCount,
+            rooms: roomCount,
+            extraBeds: extraBeds,
+            packageName: 'Room Booking',
+            checkInDate: checkInDate.format('DD MMM YYYY'),
+            checkOutDate: checkOutDate.format('DD MMM YYYY')
+        });
     };
 
     return (
@@ -177,7 +180,7 @@ Proceeding to check availability...`);
                                                             <DateCalendar
                                                                 value={checkInDate}
                                                                 onChange={handleCheckInDateChange}
-                                                                
+
                                                             />
                                                         </LocalizationProvider>
                                                     </Popover>
@@ -211,7 +214,7 @@ Proceeding to check availability...`);
                                                             <DateCalendar
                                                                 value={checkOutDate}
                                                                 onChange={handleCheckOutDateChange}
-                                                                
+
                                                             />
                                                         </LocalizationProvider>
                                                     </Popover>

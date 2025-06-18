@@ -32,14 +32,10 @@ const Hero = () => {
 
           {/* Main Content */}
           <div className="flex h-full w-full sm:items-center  py-20 sm:py-0">
-            <div className="px-6 w-full lg:px-16">
-              <div className="w-full flex flex-col gap-8 sm:gap-1 justify-between h-full">
-                <h1 className="text-white leading-trim text-edge-cap 
-               royal font-normal 
-               text-[68px] leading-[42px] tracking-[-1.36px] capitalize
-               sm:text-[160px] sm:leading-[100px] sm:tracking-[-3.2px]
-               mb-15 [text-shadow:_0px_3.787px_75.74px_rgba(255,255,255,0.4)]">
-                  A Serene &<br className='sm:block hidden' />
+            <div className="px-6 w-full lg:px-16 h-full">
+              <div className="w-full flex flex-col gap-8 sm:gap-15  sm:justify-center h-full">
+                <h1 className="hero-heading">
+                  A Serene & <br className='sm:block hidden' />
                   Leisurely<br />
                   Experience <br className='sm:block hidden' />
                   Awaits<br className='sm:hidden block' /> You At<br className='sm:block hidden' />

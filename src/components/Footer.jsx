@@ -5,14 +5,14 @@ import { useLocation } from 'react-router-dom';
 // Route configuration with different backgrounds and gradients
 const routeConfig = {
     '/': {
-        backgroundImage: '/foot-home.png',
+        backgroundImage: '/footer.png',
         gradientClass: 'foot-grad-top',
         bgColor: '#766C65',
         textColor: '#FFFFFF',
         heading: 'Escape the hustle of city life and reconnect with nature at The Eco Holiday Resort, your luxury retreat in serenity.'
     },
     '/about-us': {
-        backgroundImage: '/about-foot.jpg',
+        backgroundImage: '/foot-about.png',
         gradientClass: 'foot-grad-top-about',
         bgColor: '#ffffff',
         textColor: '#000',
@@ -61,7 +61,7 @@ const Footer = () => {
     const config = routeConfig[currentPath] || routeConfig['/'];
 
     return (
-        <div className="relative overflow-hidden afacad rounded-t-4xl sm:rounded-t-none">
+        <div className="relative  overflow-hidden afacad rounded-t-4xl sm:rounded-t-none">
             {/* Background Image */}
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -72,9 +72,9 @@ const Footer = () => {
             <div className='foot-grad absolute bottom-0 left-0 right-0 h-full'></div>
 
             {/* Main Content Container */}
-            <div className="relative z-10 flex flex-col">
+            <div className="relative z-10 flex flex-col gap-[20vh] justify-between">
                 {/* Hero Content */}
-                <div className={`h-[75vh] ${config.gradientClass} flex items-start justify-center px-4`}>
+                <div className={` flex items-start justify-center px-4 py-7`}>
                     <div className="text-center mx-auto">
                         {/* Main Heading - using inline style for dynamic color */}
                         <h1

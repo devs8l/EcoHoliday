@@ -11,6 +11,7 @@ import Feedback from './pages/Feedback.jsx'
 import Contact from './pages/Contact.jsx'
 import DayOutPartyPage from './pages/DayOutPartyPage.jsx'
 import RoomBookingPage from './pages/RoomBookingPage.jsx'
+import UserPopUp from './components/UserPopUp.jsx'
 
 const App = () => {
   useEffect(() => {
@@ -28,6 +29,7 @@ const App = () => {
   return (
     <div className='overflow-hidden'>
       <Navbar />
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<About />} />
@@ -39,6 +41,7 @@ const App = () => {
         <Route path="/room-booking" element={<RoomBookingPage />} />
       </Routes>
       <Footer />
+      <UserPopUp/>
     </div>
   )
 }
