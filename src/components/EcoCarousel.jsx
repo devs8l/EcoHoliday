@@ -1,23 +1,35 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Play, Pause, ExternalLink } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { fetchReels } from '../Services/reelsApi';
 
 const EcoCarousel = () => {
     const [playingStates, setPlayingStates] = useState({});
+    const [videos, setVideos] = useState([]); // State for dynamic videos
     const videoRefs = useRef({});
 
-    const videos = [
-        { id: 1, src: '/eco-hero.mp4', poster: '/foot-home.png' },
-        { id: 2, src: '/eco-hero.mp4', poster: '/foot-home.png' },
-        { id: 3, src: '/eco-hero.mp4', poster: '/foot-home.png' },
-        { id: 4, src: '/eco-hero.mp4', poster: '/foot-home.png' },
-        { id: 5, src: '/eco-hero.mp4', poster: '/foot-home.png' },
-        { id: 6, src: '/eco-hero.mp4', poster: '/foot-home.png' }
-    ];
+    // Fetch videos on component mount
+    useEffect(() => {
+        const loadVideos = async () => {
+            try {
+                const fetchedVideos = await fetchReels();
+                setVideos(fetchedVideos);
+            } catch (error) {
+                console.error('Error loading videos:', error);
+                // Optionally set some fallback videos here
+                setVideos([
+                    { id: 'fallback1', src: '/eco-hero.mp4', poster: '/foot-home.png' },
+                    { id: 'fallback2', src: '/eco-hero.mp4', poster: '/foot-home.png' }
+                ]);
+            }
+        };
+
+        loadVideos();
+    }, []);
 
     const togglePlayPause = (id) => {
         const video = videoRefs.current[id];
@@ -76,11 +88,11 @@ const EcoCarousel = () => {
                                     <video
                                         ref={el => videoRefs.current[video.id] = el}
                                         src={video.src}
-                                        poster={video.poster}
+                                        
                                         className="w-full h-full object-cover"
                                         onClick={() => togglePlayPause(video.id)}
                                         playsInline
-                                        muted
+                                        
                                         loop
                                         onPlay={() => setPlayingStates(prev => ({ ...prev, [video.id]: true }))}
                                         onPause={() => setPlayingStates(prev => ({ ...prev, [video.id]: false }))}
