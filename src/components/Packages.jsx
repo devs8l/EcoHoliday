@@ -1,20 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { Clock, Users, Plus, Baby, TrendingUp } from 'lucide-react';
+import pricingAPI from '../Services/packageApi';
 
 const Packages = () => {
     const [activeTab, setActiveTab] = useState('party');
     const [animate, setAnimate] = useState(false);
+    const [pricing, setPricing] = useState({});
+    useEffect(() => {
+        async function loadPricing() {
+            try {
+                const data = await pricingAPI.getPricing();
+                if (data.party) setPricing(data);
+                console.log('Pricing data loaded:', data);
+
+                setIsLoading(false);
+            } catch (error) {
+                console.error('Failed to load pricing:', error);
+                setIsLoading(false);
+            }
+        }
+        loadPricing();
+    }, []);
 
     const packages = {
         party: {
             title: "Party<br/>Package",
             mobileTitle: "Party Package",
             description: "Enjoy a fun-filled day with our Party Package! Savor a tasty lunch and dinner, while making the most of the swimming pool, rain dance floor, games, and a cozy bonfire. Perfect for a memorable getaway with family or friends in a peaceful village setting!",
-            adultPrice: "₹1,000/person",
-            childPrice: "₹500/person",
-            timing: "12 PM to 09 PM",
-            lunchTime: "01:30 PM to 03 PM",
-            dinnerTime: "07:30 PM to 09 PM",
+            adultPrice: `₹${pricing?.party?.adult ?? 1000}/person`,
+            childPrice: `₹${pricing?.party?.child ?? 500}/person`,
+            timing: `${pricing?.party?.timing?.from ?? '12 PM'} to ${pricing?.party?.timing?.to ?? '09 PM'}`,
+            lunchTime: `${pricing?.party?.lunch?.from ?? '01:30 PM'} to ${pricing?.party?.lunch?.to ?? '03 PM'}`,
+            dinnerTime: `${pricing?.party?.dinner?.from ?? '07:30 PM'} to ${pricing?.party?.dinner?.to ?? '09 PM'}`,
             includes: [
                 { icon: "/breakfast.svg", label: "Breakfast" },
                 { icon: "/swim.svg", label: "Swimming Pool" },
@@ -29,9 +46,9 @@ const Packages = () => {
             title: "Night<br/>Stay Package",
             mobileTitle: "Night Stay Package",
             description: "Experience a relaxing getaway with our Night Stay Package! Choose from a cozy cottage, spacious villa, or pool room, and enjoy a hearty breakfast, access to the swimming pool, rain dance floor, and fun games. Perfect for a serene overnight escape in a peaceful village setting!",
-            cottage: "₹4,000/",
-            villa: "₹7,000/",
-            pool: "₹8,500/",
+            cottage: `₹${pricing?.nightStay?.cottage ?? 4000}/`,
+            villa: `₹${pricing?.nightStay?.villa ?? 7000}/`,
+            pool: `₹${pricing?.nightStay?.poolRoom ?? 8500}/`,
             timing: "02 PM to 12 PM (Next Day)",
             includes: [
                 { icon: "/breakfast.svg", label: "Breakfast" },
@@ -47,7 +64,7 @@ const Packages = () => {
             title: "Camping<br/>Night Package",
             mobileTitle: "Camping Night Package",
             description: "Dive into an adventurous escape with our Camping Night Package! Enjoy a hearty breakfast and dinner, along with access to the swimming pool, rain dance floor, games, and a warm bonfire. Perfect for a thrilling overnight camping experience in a serene village setting!",
-            price: "₹2,000 (+12% Taxes) per person",
+            price: `₹${pricing?.camping?.basePrice ?? 2000} (+${pricing?.camping?.taxPercent ?? 12}% Taxes) per person`,
             includes: [
                 { icon: "/breakfast.svg", label: "Breakfast" },
                 { icon: "/swim.svg", label: "Swimming Pool" },
@@ -109,9 +126,9 @@ const Packages = () => {
                 {/* Main Content */}
                 <div
                     className={` bg-cover bg-center bg-no-repeat relative ${activeTab === 'campingNight'
-                            ? 'object-[0%_25%]'
-                            : ''
-                            }` }
+                        ? 'object-[0%_25%]'
+                        : ''
+                        }`}
                     style={{ backgroundImage: currentPackage.bgImage }}
                 >
                     {/* Overlay */}

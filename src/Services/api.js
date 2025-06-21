@@ -17,9 +17,3 @@ export const createBooking = async (bookingData) => {
     throw error;
   }
 };
-
-// Add other API methods as needed
-export const getBookings = async () => {
-  const response = await api.get('/bookings');
-  return response.data;
-};
